@@ -12,7 +12,12 @@
 <!-- ヘッダー・ナビゲーション -->
   <header class="site-header">
     <div class="container header-inner">
-      <h1 class="site-title"><a href="index.html">鹿児島大学 SATSUMAロケット研究会</a></h1>
+      <h1 class="site-title">
+        <a href="index.html" class="brand-link">
+          <img src="images/logo.png" alt="SATSUMAロケット研究会 アイコン" class="site-logo">
+          <span>鹿児島大学 SATSUMAロケット研究会</span>
+        </a>
+      </h1>
       <button type="button" class="menu-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-nav">
         <span class="menu-icon" aria-hidden="true"></span>
       </button>
@@ -186,7 +191,7 @@
                 </tr>
                 <tr>
                   <th>活動日</th>
-                  <td>月曜日・水曜日・木曜日・金曜日 放課後（任意参加・状況に応じて変更あり）</td>
+                  <td>平日 放課後（任意参加・状況に応じて変更あり）</td>
                 </tr>
                 <tr>
                   <th>活動時間</th>
@@ -233,11 +238,23 @@
             <li>株式会社鶴結び 様</li>
           </ul>
           <hr class="divider">
+          <hr class="divider">
           <h3>会計報告</h3>
           <p>
-            年度ごとの会計報告資料は <code>images/</code> フォルダに画像を保存し、リンクまたは画像表示で掲載できます。
+            令和7年度も、私共鹿児島大学SATSUMAロケット研究会に多大なるご支援とご声援を賜り、厚く御礼申し上げます。<br>
+令和7年度分の会計につきましては、顧問である片野田洋教授による会計監査を完了いたしましたので、下記の通りご報告申し上げます。<br>
+令和8年度も、皆様のご期待に沿えるよう活動してまいりますので、引き続きご支援・ご声援のほどよろしくお願い申し上げます。
           </p>
-          <!-- 例: <p><a href="images/kaikei_r7.jpg" target="_blank" rel="noopener">令和7年度 会計報告書を見る</a></p> -->
+
+          <div class="report-grid">
+            <figure class="report-card">
+              <button type="button" class="report-trigger" data-full="images/kaikei_r7.jpg" data-caption="令和7年度 会計報告書（顧問：片野田洋教授 監査済）">
+                <img src="images/kaikei_r7.jpg" alt="令和7年度 会計報告書">
+                <span class="zoom-badge">クリックで拡大</span>
+              </button>
+              <figcaption>令和7年度 会計報告書</figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
@@ -290,6 +307,50 @@
         menuToggle.setAttribute('aria-expanded', 'false');
         menuToggle.setAttribute('aria-label', 'メニューを開く');
       });
+    });
+  </script>
+
+<!-- 会計報告書などの画像拡大モーダル -->
+  <div id="image-modal" class="image-modal" aria-hidden="true" role="dialog" aria-label="拡大画像表示">
+    <div class="image-modal-backdrop" data-close-modal></div>
+    <div class="image-modal-content">
+      <button type="button" class="image-modal-close" aria-label="閉じる" data-close-modal>&times;</button>
+      <img id="image-modal-img" src="" alt="">
+      <p id="image-modal-caption" class="image-modal-caption"></p>
+    </div>
+  </div>
+
+  <script>
+    const imageModal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('image-modal-img');
+    const modalCaption = document.getElementById('image-modal-caption');
+
+    document.querySelectorAll('.report-trigger').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        modalImg.src = btn.dataset.full;
+        modalImg.alt = btn.dataset.caption || '';
+        modalCaption.textContent = btn.dataset.caption || '';
+        imageModal.classList.add('is-open');
+        imageModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeImageModal() {
+      imageModal.classList.remove('is-open');
+      imageModal.setAttribute('aria-hidden', 'true');
+      modalImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    imageModal.querySelectorAll('[data-close-modal]').forEach((el) => {
+      el.addEventListener('click', closeImageModal);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && imageModal.classList.contains('is-open')) {
+        closeImageModal();
+      }
     });
   </script>
 
