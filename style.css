@@ -191,7 +191,7 @@ a {
   position: relative;
   background:
     linear-gradient(rgba(11, 29, 58, 0.62), rgba(11, 29, 58, 0.72)),
-    url("images/hero_bg.jpg") center / cover no-repeat;
+    url("images/hero_bg.JPG") center / cover no-repeat;
   color: #ffffff;
   padding: 72px 0;
   text-align: center;
