@@ -9,11 +9,14 @@
 </head>
 <body>
 
-  <!-- ヘッダー・ナビゲーション -->
+ <!-- ヘッダー・ナビゲーション -->
   <header class="site-header">
     <div class="container header-inner">
       <h1 class="site-title"><a href="index.html">鹿児島大学 SATSUMAロケット研究会</a></h1>
-      <nav class="site-nav" aria-label="メインナビゲーション">
+      <button type="button" class="menu-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-nav">
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
+      <nav id="global-nav" class="site-nav" aria-label="メインナビゲーション">
         <ul>
           <li><a href="#about">活動内容</a></li>
           <li><a href="#news">活動報告・お知らせ</a></li>
@@ -24,7 +27,6 @@
       </nav>
     </div>
   </header>
-
   <!-- メインビジュアル -->
   <section class="hero">
     <div class="container">
@@ -272,6 +274,24 @@
       <p>&copy; 鹿児島大学 SATSUMAロケット研究会 All Rights Reserved.</p>
     </div>
   </footer>
+<script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteNav = document.querySelector('.site-nav');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = siteNav.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      menuToggle.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+    });
+
+    siteNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        siteNav.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'メニューを開く');
+      });
+    });
+  </script>
 
 </body>
 </html>

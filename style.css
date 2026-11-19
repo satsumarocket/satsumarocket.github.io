@@ -49,12 +49,12 @@ a {
 
 .header-inner {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding-top: 12px;
   padding-bottom: 12px;
-  gap: 10px;
+  gap: 12px;
+  position: relative;
 }
 
 .site-title {
@@ -67,24 +67,106 @@ a {
   text-decoration: none;
 }
 
+/* ハンバーガーボタン */
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.menu-icon {
+  position: relative;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-icon::before {
+  top: -6px;
+}
+
+.menu-icon::after {
+  top: 6px;
+}
+
+/* 開いたときの × 変形 */
+.menu-toggle[aria-expanded="true"] .menu-icon {
+  background-color: transparent;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* ドロップダウンメニュー */
+.site-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  background-color: var(--primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  min-width: 210px;
+  padding: 8px 0;
+}
+
+.site-nav.is-open {
+  display: block;
+}
+
 .site-nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  flex-direction: column;
 }
 
 .site-nav a {
+  display: block;
+  padding: 10px 18px;
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   font-weight: 600;
 }
 
 .site-nav a:hover {
-  text-decoration: underline;
+  background-color: rgba(255, 255, 255, 0.14);
 }
 
 /* ヒーローセクション */
