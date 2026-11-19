@@ -638,3 +638,24 @@ a {
   font-size: 0.92rem;
   text-align: center;
 }
+
+/* ヘッダーのロゴサイズ強制指定 */
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.site-header .site-logo,
+img.site-logo {
+  width: 34px !important;
+  height: 34px !important;
+  max-width: 34px !important;
+  max-height: 34px !important;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: #ffffff;
+  flex-shrink: 0;
+}
